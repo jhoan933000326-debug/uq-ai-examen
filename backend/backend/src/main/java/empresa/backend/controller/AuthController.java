@@ -11,7 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+// CORRECCIÓN 1: Se agregó la URL de Vercel a los orígenes permitidos
+@CrossOrigin(origins = {"http://localhost:3000", "https://uq-ai-examen.vercel.app"}, allowCredentials = "true")
 public class AuthController {
     
     @Autowired private UsuarioRepository usuarioRepository;
@@ -43,10 +44,10 @@ public class AuthController {
                 u.setIntentosFallidos(0);
                 usuarioRepository.save(u);
                 
-                // RÚBRICA 3.2: Configuración estricta de seguridad
-                response.setHeader("Set-Cookie", "token=autenticado; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=3600");
+                // CORRECCIÓN 2: SameSite=None y Secure=true para permitir que la cookie 
+                // viaje entre dominios distintos (Vercel -> Railway)
+                response.setHeader("Set-Cookie", "token=autenticado; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=3600");
                 
-                // RÚBRICA 3.4: Devolvemos el rol para control de acceso (RBAC)
                 return ResponseEntity.ok(Map.of("mensaje", "Login exitoso", "rol", u.getRol()));
             }
 
@@ -60,7 +61,7 @@ public class AuthController {
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpServletResponse response) {
         // RÚBRICA 3.5: Logout seguro eliminando la cookie en servidor
-        response.setHeader("Set-Cookie", "token=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0");
+        response.setHeader("Set-Cookie", "token=; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=0");
         return ResponseEntity.ok("Sesión cerrada correctamente");
     }
 }
