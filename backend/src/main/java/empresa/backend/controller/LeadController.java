@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/leads")
-@CrossOrigin(origins = "http://localhost:3000") // <--- ¡Esto es vital!
+
 public class LeadController {
     private final LeadRepository repository;
 

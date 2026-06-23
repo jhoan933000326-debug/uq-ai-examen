@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/api/auth")
 // Esta es la línea corregida para permitir tu dominio de Vercel y localhost
-@CrossOrigin(origins = {"http://localhost:3000", "https://uq-ai-examen.vercel.app"}, allowCredentials = "true")
+
 public class AuthController {
     
     @Autowired private UsuarioRepository usuarioRepository;
