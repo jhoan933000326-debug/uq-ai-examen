@@ -17,19 +17,16 @@ export default function LoginPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
-        credentials: 'include',
       });
 
       if (response.ok) {
-        // --- LÓGICA DE ÉXITO ---
         const data = await response.json(); 
         localStorage.setItem('userRole', data.rol);
         
         setIntentos(0);
-        // CORREGIDO: Navegación suave sin recarga brusca
-        router.push('/dashboard'); 
+        // Usamos window.location para asegurar la navegación fuera de Next.js
+        window.location.href = '/dashboard'; 
       } else {
-        // --- LÓGICA DE FALLO ---
         const mensaje = await response.text();
         const nuevosIntentos = intentos + 1;
         setIntentos(nuevosIntentos);
@@ -42,6 +39,7 @@ export default function LoginPage() {
         }
       }
     } catch (error) {
+      console.error("Error técnico:", error);
       alert('Error de conexión con el servidor.');
     }
   };
