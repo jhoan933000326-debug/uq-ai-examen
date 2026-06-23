@@ -30,11 +30,11 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .csrf(csrf -> csrf.disable()) // Desactivado para desarrollo
-            .headers(headers -> headers.frameOptions(frame -> frame.disable())) // Necesario para H2
+            .csrf(csrf -> csrf.disable()) 
+            .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll() // TODO lo que empiece así es público
+                .requestMatchers("/api/auth/**").permitAll() 
                 .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             )
@@ -46,9 +46,20 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:3000"));
+        
+        // Permitimos ambos orígenes
+        config.setAllowedOrigins(List.of(
+            "http://localhost:3000", 
+            "https://uq-ai-examen.vercel.app"
+        ));
+        
+        // Métodos permitidos
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        
+        // Cabeceras permitidas (añadimos * para evitar bloqueos por cabeceras extrañas)
+        config.setAllowedHeaders(List.of("*"));
+        
+        // Permite envío de cookies/tokens de autenticación
         config.setAllowCredentials(true);
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
