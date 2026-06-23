@@ -13,7 +13,7 @@ export default function DashboardPage() {
 
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:8080/api/auth/logout', { 
+      await fetch('https://uq-ai-examen-production.up.railway.app/api/auth/dashboard', { 
         method: 'POST', 
         credentials: 'include' 
       });
