@@ -11,7 +11,7 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://uq-ai-examen-production.up.railway.app/api/auth/loginhttp://localhost:8080/api/auth/register', {
+      const response = await fetch('https://uq-ai-examen-production.up.railway.app/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
