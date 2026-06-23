@@ -12,29 +12,33 @@ export default function LoginPage() {
     e.preventDefault();
     if (bloqueado) return;
 
-  try {
-  const response = await fetch('https://uq-ai-examen-production.up.railway.app/api/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData),
-    credentials: 'include',
-  });
+    try {
+      const response = await fetch('https://uq-ai-examen-production.up.railway.app/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+        credentials: 'include',
+      });
+
       if (response.ok) {
-        // --- AGREGADO PARA RBAC ---
+        // --- LÓGICA DE ÉXITO ---
         const data = await response.json(); 
         localStorage.setItem('userRole', data.rol);
-        // ---------------------------
+        
         setIntentos(0);
-        window.location.href = '/dashboard'; 
+        // CORREGIDO: Navegación suave sin recarga brusca
+        router.push('/dashboard'); 
       } else {
+        // --- LÓGICA DE FALLO ---
         const mensaje = await response.text();
         const nuevosIntentos = intentos + 1;
         setIntentos(nuevosIntentos);
+        
         if (nuevosIntentos >= 3) {
           setBloqueado(true);
           alert('Cuenta bloqueada por seguridad.');
         } else {
-          alert(mensaje);
+          alert(mensaje || 'Credenciales incorrectas');
         }
       }
     } catch (error) {
@@ -69,7 +73,7 @@ export default function LoginPage() {
               className="w-full p-4 border border-gray-300 rounded-lg text-black bg-white"
               onChange={(e) => setFormData({...formData, password: e.target.value})} 
             />
-            <button type="submit" className="w-full p-4 bg-blue-600 text-white rounded-lg font-bold">
+            <button type="submit" className="w-full p-4 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-colors">
               Entrar
             </button>
           </form>
