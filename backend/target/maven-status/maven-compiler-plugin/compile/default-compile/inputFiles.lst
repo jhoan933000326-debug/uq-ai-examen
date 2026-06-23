@@ -1,0 +1,11 @@
+C:\Users\Jhoan\Documents\uq-ai\backend\src\main\java\empresa\backend\BackendApplication.java
+C:\Users\Jhoan\Documents\uq-ai\backend\src\main\java\empresa\backend\config\CorsConfig.java
+C:\Users\Jhoan\Documents\uq-ai\backend\src\main\java\empresa\backend\config\JwtFilter.java
+C:\Users\Jhoan\Documents\uq-ai\backend\src\main\java\empresa\backend\config\JwtUtil.java
+C:\Users\Jhoan\Documents\uq-ai\backend\src\main\java\empresa\backend\config\SecurityConfig.java
+C:\Users\Jhoan\Documents\uq-ai\backend\src\main\java\empresa\backend\controller\AuthController.java
+C:\Users\Jhoan\Documents\uq-ai\backend\src\main\java\empresa\backend\controller\LeadController.java
+C:\Users\Jhoan\Documents\uq-ai\backend\src\main\java\empresa\backend\model\Lead.java
+C:\Users\Jhoan\Documents\uq-ai\backend\src\main\java\empresa\backend\model\Usuario.java
+C:\Users\Jhoan\Documents\uq-ai\backend\src\main\java\empresa\backend\repository\LeadRepository.java
+C:\Users\Jhoan\Documents\uq-ai\backend\src\main\java\empresa\backend\repository\UsuarioRepository.java

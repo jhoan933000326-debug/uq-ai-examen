@@ -1,0 +1,10 @@
+empresa\backend\model\Lead.class
+empresa\backend\repository\LeadRepository.class
+empresa\backend\repository\UsuarioRepository.class
+empresa\backend\model\Usuario.class
+empresa\backend\controller\AuthController.class
+empresa\backend\BackendApplication.class
+empresa\backend\config\SecurityConfig.class
+empresa\backend\config\JwtFilter.class
+empresa\backend\config\JwtUtil.class
+empresa\backend\controller\LeadController.class

@@ -1,0 +1,9 @@
+### 3. Prueba final: Acceso a Leads Protegidos
+POST http://localhost:8080/api/leads
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaG9hbkB0ZXN0LmNvbSIsImlhdCI6MTc4MjE2NzgwNywiZXhwIjoxNzgyMjU0MjA3fQ.xNumOUCmdaoHAXtGN-O8DEOt12VVoDxFTNzMRI9icIE
+
+{
+    "nombre": "Jhoan",
+    "email": "jhoan@test.com"
+}
