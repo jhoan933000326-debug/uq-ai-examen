@@ -12,14 +12,13 @@ export default function LoginPage() {
     e.preventDefault();
     if (bloqueado) return;
 
-    try {
-      const response = await fetch('http://localhost:8080/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-        credentials: 'include', 
-      });
-
+  try {
+  const response = await fetch('https://uq-ai-examen-production.up.railway.app/api/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData),
+    credentials: 'include',
+  });
       if (response.ok) {
         // --- AGREGADO PARA RBAC ---
         const data = await response.json(); 
